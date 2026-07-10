@@ -788,7 +788,9 @@
       transition: all .3s ease;
       cursor: pointer;
       text-decoration: none;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .cert-card:hover {
@@ -808,6 +810,7 @@
       padding: 9px;
       position: relative;
       cursor: zoom-in;
+      flex-shrink: 0;
     }
 
     .cert-thumb img {
@@ -855,6 +858,9 @@
 
     .cert-body {
       padding: 12px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
     }
 
     .cert-name {
@@ -875,6 +881,8 @@
       letter-spacing: .05em;
       color: var(--yellow-light);
       opacity: .9;
+      margin-top: auto;
+      padding-top: 6px;
     }
 
     .cert-year i {
@@ -2033,14 +2041,6 @@
 
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%233b82f6%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-family=%22Arial%22 font-size=%2255%22 font-weight=%22bold%22 fill=%22%23fff%22 text-anchor=%22middle%22%3EK%3C/text%3E%3C/svg%3E">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
 </head>
 
 <body>
@@ -2155,7 +2155,7 @@
               <div class="timeline-org">Bohol Light Company Inc.</div>
               <div class="timeline-preview">
                 <img src="assets/img/it-intern-1.jpg" alt="IT Intern Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Led a 3-member development team in designing and delivering a web-based Asset
                 Management System with an integrated IT support chat box.</div>
@@ -2182,7 +2182,7 @@
               <div class="timeline-org">Thesis &amp; Research — University of Bohol</div>
               <div class="timeline-preview">
                 <img src="assets/img/thesis.png" alt="Thesis Document" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Led a 4-member development team within a 7-member thesis group in designing and
                 delivering a full-stack bus management system, integrating hardware sensors and a cross-platform
@@ -2208,7 +2208,7 @@
               <div class="timeline-org">Web Application &amp; AI Integration Project</div>
               <div class="timeline-preview">
                 <img src="assets/img/color-1.jpg" alt="Color Palette Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Developed an AI-powered web application that extracts and analyzes the dominant
                 color palette from uploaded images, identifying the top five majority colors.</div>
@@ -2238,7 +2238,7 @@
               <div class="timeline-org">Institutional System Project — Tagbilaran City College</div>
               <div class="timeline-preview">
                 <img src="assets/img/attendify-1.jpg" alt="Attendify Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Led the design and development of Attendify, a web-based event management and
                 attendance monitoring system implemented for institutional use at Tagbilaran City College.</div>
@@ -2268,7 +2268,7 @@
               <div class="timeline-org">Networking Project</div>
               <div class="timeline-preview">
                 <img src="assets/img/flask-1.jpg" alt="Flask Messaging Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Developed a web-based, IP-networked messaging application utilizing Python
                 Flask for the backend.</div>
@@ -2294,7 +2294,7 @@
               <div class="timeline-org">Embedded Systems &amp; IoT Project</div>
               <div class="timeline-preview">
                 <img src="assets/img/soil-1.jpg" alt="Soil Irrigation Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Designed and developed an automated irrigation system utilizing the ESP8266
                 microcontroller to monitor environmental conditions and control water delivery.</div>
@@ -2321,7 +2321,7 @@
               <div class="timeline-org">Project</div>
               <div class="timeline-preview">
                 <img src="assets/img/ml-1.jpg" alt="ML Website Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Developed a dedicated web application using HTML, CSS, and JavaScript to
                 support a Machine Learning and Picture Processing subject.</div>
@@ -2342,7 +2342,7 @@
               <div class="timeline-org">Embedded Systems &amp; Robotics Project</div>
               <div class="timeline-preview">
                 <img src="assets/img/sumobot-1.jpg" alt="Sumobot Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Designed and built a competitive Sumobot utilizing the ESP8266 microcontroller
                 for both manual and autonomous control.</div>
@@ -2368,7 +2368,7 @@
               <div class="timeline-org">Project</div>
               <div class="timeline-preview">
                 <img src="assets/img/numerical-1.jpg" alt="Numerical Methods Preview" loading="lazy"
-                  onerror="this.style.display='none'">
+                  onerror="this.closest('.timeline-preview').style.display='none'">
               </div>
               <div class="timeline-desc">Developed a robust application using Java to calculate and display the root(s)
                 from a user-provided quadratic equation.</div>
@@ -2520,7 +2520,7 @@
       </div>
 
       <!-- EDUCATION — placed below the skills grid, still within the Skills section -->
-      <div class="skills-education-wrap reveal">
+      <div class="skills-education-wrap reveal" id="education">
         <div class="resume-col-title"><i class="bi bi-mortarboard"></i> Education</div>
         <div class="timeline">
           <div class="timeline-item">
@@ -2551,7 +2551,7 @@
       </div>
 
       <!-- CERTIFICATIONS — placed right after Education, still within the Skills section -->
-      <div class="skills-certifications-wrap reveal">
+      <div class="skills-certifications-wrap reveal" id="certificates">
         <div class="resume-col-title"><i class="bi bi-patch-check"></i> Certifications</div>
         <div class="cert-grid">
 
