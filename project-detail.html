@@ -301,6 +301,8 @@
     .preview-live-wrap {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
       margin: 32px 0 48px;
     }
 
@@ -339,6 +341,16 @@
 
     .preview-live-btn:hover i {
       transform: translate(3px, -2px);
+    }
+
+    .preview-live-btn.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .preview-live-btn.disabled i {
+      color: var(--muted);
     }
 
     /* More Projects */
@@ -840,12 +852,8 @@
       </div>
     </div>
 
-    <!-- Preview Live Project Button -->
-    <div class="preview-live-wrap" id="live-project-wrap" style="display:none;">
-      <a href="#" target="_blank" class="preview-live-btn" id="live-project-btn">
-        <i class="bi bi-box-arrow-up-right"></i> Preview Live Project
-      </a>
-    </div>
+    <!-- Preview Live Project Button(s) -->
+    <div class="preview-live-wrap" id="live-project-wrap" style="display:none;"></div>
 
     <!-- Image Gallery -->
     <div class="detail-gallery" id="detail-gallery">
@@ -895,6 +903,11 @@
 
   <script>
     // Project data
+    // NOTE: each project can optionally define a `links` array — one button is
+    // rendered per entry, e.g. [{ label, url, icon }]. Set disabled: true (or
+    // leave url null) to render a greyed-out, non-clickable placeholder button
+    // (used for repos that aren't public yet). If `links` is null/empty, no
+    // button row is rendered at all for that project.
     const projects = [
       {
         id: "it-intern",
@@ -912,7 +925,7 @@
           "Designed MySQL schema supporting asset tracking, tickets, and chat logs",
           "Bridged frontend and backend gaps ensuring consistent system integration"
         ],
-        liveUrl: null
+        links: null
       },
       {
         id: "biyabe",
@@ -930,7 +943,10 @@
           "Integrated GPS, RFID/NFC, and terminal sensors via ESP8266 and ESP32",
           "Enabled real-time vehicle tracking and automated passenger check-in"
         ],
-        liveUrl: null
+        links: [
+          { label: "View Web Repo", url: "https://github.com/KarenPitoy/BiyahE_web", icon: "bi-github" },
+          { label: "Download App (APK)", url: "https://drive.google.com/file/d/1-V6q20wT2ImHzMjRiyr9nbrebkEgKmNd/view?usp=sharing", icon: "bi-download" }
+        ]
       },
       {
         id: "color-palette",
@@ -948,7 +964,7 @@
           "Generated AI design recommendations for websites, PPTs, branding, and UI/UX",
           "Built responsive frontend for instant palette visualization"
         ],
-        liveUrl: null
+        links: null
       },
       {
         id: "attendify",
@@ -966,7 +982,10 @@
           "Integrated ESP32 to control lights, fans, and AC units",
           "Implemented intelligent automation with manual override support"
         ],
-        liveUrl: null
+        links: [
+          { label: "View Admin Repo", url: "https://github.com/KarenPitoy/TCC-admin", icon: "bi-github" },
+          { label: "View User Repo", url: null, icon: "bi-github", disabled: true }
+        ]
       },
       {
         id: "flask-messaging",
@@ -983,7 +1002,9 @@
           "Designed responsive frontend for clean user experience",
           "Applied networking and IP concepts for real-time message transfer"
         ],
-        liveUrl: null
+        links: [
+          { label: "View on GitHub", url: "https://github.com/KarenPitoy/networking101", icon: "bi-github" }
+        ]
       },
       {
         id: "soil-irrigation",
@@ -1000,7 +1021,7 @@
           "Managed relay-controlled water pump for automated irrigation",
           "Connected to Arduino Cloud for remote monitoring and control"
         ],
-        liveUrl: null
+        links: null
       },
       {
         id: "ml-website",
@@ -1009,14 +1030,18 @@
         org: "Project",
         images: ["assets/img/ml-1.jpg"],
         preview: null,
-        about: "A dedicated web application supporting Machine Learning and Picture Processing coursework, showcasing complex web application requirements and client-side processing.",
-        use: "An interactive web application supporting Machine Learning and Image Processing coursework with client-side demonstrations and visualizations.",
+        about: "A dedicated web application supporting Machine Learning and Picture Processing coursework, showcasing complex web application requirements and client-side processing. It also includes a simple sign language translator feature.",
+        use: "An interactive web application supporting Machine Learning and Image Processing coursework with client-side demonstrations and visualizations, including a simple sign language translator.",
         impact: "Provided a practical platform for students to visualize and understand complex ML and image processing concepts. Simplified learning through interactive demonstrations rather than static textbook explanations.",
         achievements: [
           "Developed interactive web application using HTML, CSS, and JavaScript",
-          "Showcased proficiency in complex web application requirements"
+          "Showcased proficiency in complex web application requirements",
+          "Built a simple sign language translator feature"
         ],
-        liveUrl: null
+        links: [
+          { label: "Preview Live Project", url: "https://karenpitoy.github.io/MachineVision/", icon: "bi-box-arrow-up-right" },
+          { label: "View on GitHub", url: "https://github.com/KarenPitoy/MachineVision", icon: "bi-github" }
+        ]
       },
       {
         id: "sumobot",
@@ -1033,7 +1058,9 @@
           "Developed autonomous logic for opponent detection and rule-based pushing",
           "Integrated sensors and actuators for specialized robotics application"
         ],
-        liveUrl: null
+        links: [
+          { label: "View on GitHub", url: "https://github.com/KarenPitoy/ATOM", icon: "bi-github" }
+        ]
       },
       {
         id: "numerical-methods",
@@ -1042,14 +1069,18 @@
         org: "Project",
         images: ["assets/img/numerical-1.jpg"],
         preview: null,
-        about: "A Java application that calculates and displays roots from user-provided quadratic equations, with graphing functionality to visually plot the quadratic curve.",
-        use: "A Java application that solves quadratic equations and plots the resulting curves graphically with root markers.",
+        about: "A Java application that calculates and displays roots from user-provided quadratic equations, with graphing functionality to visually plot the quadratic curve. Also implemented as a MATLAB version.",
+        use: "A quadratic equation solver that plots the resulting curves graphically with root markers, available in both Java and MATLAB versions.",
         impact: "Made abstract mathematical concepts tangible by visualizing quadratic curves and their roots. Helped students verify manual calculations and understand the relationship between equations and their graphical representations.",
         achievements: [
           "Developed robust Java application for quadratic equation solving",
-          "Implemented graphing functionality to plot curves and mark roots"
+          "Implemented graphing functionality to plot curves and mark roots",
+          "Built an equivalent MATLAB version of the solver"
         ],
-        liveUrl: null
+        links: [
+          { label: "View Java Version", url: "https://github.com/KarenPitoy/Numerical-Method-JAVA-", icon: "bi-github" },
+          { label: "View MATLAB Version", url: "https://github.com/KarenPitoy/Numerical-Method-MATLAB-", icon: "bi-github" }
+        ]
       }
     ];
 
@@ -1114,9 +1145,29 @@
     ).join('');
     gallery.className = 'detail-gallery ' + (project.images.length === 1 ? 'single' : project.images.length === 2 ? 'double' : '');
 
-    // Live project button - always show, use placeholder if no liveUrl
-    document.getElementById('live-project-wrap').style.display = 'flex';
-    document.getElementById('live-project-btn').href = project.liveUrl || '#';
+    // Live project / repo buttons — a project can have any number of links
+    // (e.g. a live preview + a GitHub repo, or a web repo + an app download).
+    // If a project has no links defined at all, no button row is shown.
+    const liveWrap = document.getElementById('live-project-wrap');
+
+    if (project.links && project.links.length > 0) {
+      liveWrap.style.display = 'flex';
+      liveWrap.innerHTML = project.links.map(link => {
+        const isDisabled = !link.url || link.disabled;
+        const icon = link.icon || 'bi-box-arrow-up-right';
+        if (isDisabled) {
+          return `<a href="javascript:void(0)" class="preview-live-btn disabled" title="Coming soon" onclick="return false;">
+            <i class="bi ${icon}"></i> <span>${link.label}</span>
+          </a>`;
+        }
+        return `<a href="${link.url}" target="_blank" class="preview-live-btn">
+          <i class="bi ${icon}"></i> <span>${link.label}</span>
+        </a>`;
+      }).join('');
+    } else {
+      liveWrap.style.display = 'none';
+      liveWrap.innerHTML = '';
+    }
 
     // More projects (exclude current)
     const moreGrid = document.getElementById('more-grid');
