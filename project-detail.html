@@ -780,10 +780,6 @@
     }
   </style>
   <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
-  <base target="_blank">
 </head>
 
 <body>
@@ -808,7 +804,8 @@
 
     <!-- Featured Preview Card -->
     <div class="detail-preview-card" id="detail-preview-card">
-      <img src="" alt="Featured Preview" id="preview-img" onerror="this.style.display='none'">
+      <img src="" alt="Featured Preview" id="preview-img"
+        onerror="this.closest('.detail-preview-card').style.display='none'">
     </div>
 
     <!-- About the Project -->
@@ -905,6 +902,7 @@
         title: "IT Intern",
         org: "Bohol Light Company Inc.",
         images: ["assets/img/it-intern-1.jpg", "assets/img/it-intern-2.jpg", "assets/img/it-intern-3.jpg"],
+        preview: null,
         about: "Led a 3-member development team in designing and delivering a web-based Asset Management System with an integrated IT support chat box. Contributed to both frontend and backend development using HTML, CSS, JavaScript, and Python. Designed and managed the MySQL database schema to support asset tracking, IT support ticket tracking, and chat box interaction logs.",
         use: "A web-based Asset Management System with an integrated IT support chat box that enables staff to track company assets, submit support tickets, and communicate in real-time for faster issue resolution.",
         impact: "Streamlined IT operations by replacing manual asset tracking and support ticket handling with an automated system. Reduced response time for IT issues and improved accountability through chat logs and ticket history.",
@@ -922,6 +920,7 @@
         title: "BiyahE: Smart Transport Management & Passenger Monitoring",
         org: "Thesis & Research — University of Bohol",
         images: ["assets/img/biyabe-1.jpg", "assets/img/biyabe-2.jpg", "assets/img/biyabe-3.jpg"],
+        preview: "assets/img/thesis.png",
         about: "A full-stack bus management system integrating hardware sensors and a cross-platform passenger app to modernize public transport monitoring. Engineered with Java and Kotlin backend using Supabase cloud infrastructure.",
         use: "A full-stack bus management system that integrates GPS tracking, RFID/NFC passenger check-in, and real-time route monitoring for public transport operators and commuters.",
         impact: "Modernized public transport monitoring by enabling real-time vehicle tracking and automated passenger check-in. Improved commuter experience with accurate arrival times and reduced manual ticketing overhead for operators.",
@@ -939,6 +938,7 @@
         title: "Color Palette Detector Using AI",
         org: "Web Application & AI Integration Project",
         images: ["assets/img/color-1.jpg", "assets/img/color-2.jpg"],
+        preview: null,
         about: "An AI-powered web application that extracts and analyzes the dominant color palette from uploaded images. Implemented using Python Flask REST API with OpenAI integration for intelligent color descriptions and design insights.",
         use: "An AI-powered web tool that extracts dominant color palettes from uploaded images and generates design recommendations for websites, presentations, branding, and UI/UX projects.",
         impact: "Helped designers, developers, and content creators quickly analyze and apply color schemes from any image. Reduced time spent on manual color selection by providing AI-generated contextual design insights and practical application suggestions.",
@@ -956,6 +956,7 @@
         title: "Attendify: QR-Based Event & Attendance Monitoring",
         org: "Institutional System Project — Tagbilaran City College",
         images: ["assets/img/attendify-1.jpg", "assets/img/attendify-2.jpg", "assets/img/attendify-3.jpg"],
+        preview: null,
         about: "A web-based event management and attendance monitoring system with QR code technology, ESP32-based classroom automation, and a centralized Control Room dashboard for real-time monitoring.",
         use: "A QR-based event and attendance monitoring system with ESP32-powered classroom automation for controlling lights, fans, and air conditioning units based on event schedules.",
         impact: "Eliminated manual attendance taking through automated QR check-ins, improving data accuracy and event flow. Reduced energy waste by automating classroom devices based on actual event schedules, while maintaining manual override flexibility.",
@@ -973,6 +974,7 @@
         title: "Python Flask Messaging Application",
         org: "Networking Project",
         images: ["assets/img/flask-1.jpg"],
+        preview: null,
         about: "A web-based, IP-networked messaging application similar to iMessage, built with Python Flask backend and responsive HTML/CSS frontend.",
         use: "An IP-networked messaging web application supporting one-to-one, one-to-many, and many-to-many communication modes over a local network.",
         impact: "Demonstrated practical application of networking concepts by enabling real-time message transfer across multiple communication patterns. Provided a foundation for understanding network protocols and socket programming in a real-world context.",
@@ -989,6 +991,7 @@
         title: "Automated Soil Moisture & Humidity Irrigation System",
         org: "Embedded Systems & IoT Project",
         images: ["assets/img/soil-1.jpg", "assets/img/soil-2.jpg"],
+        preview: null,
         about: "An automated irrigation system using ESP8266 microcontroller with soil moisture and DHT11 sensors, relay-controlled water pump, and Arduino Cloud integration for remote monitoring.",
         use: "An automated irrigation system that monitors soil moisture and environmental conditions via sensors to automatically control water delivery to plants.",
         impact: "Optimized water usage by delivering irrigation only when soil conditions require it. Prevented both over-watering and under-watering, improving plant health while conserving water resources through data-driven automation.",
@@ -1005,6 +1008,7 @@
         title: "Machine Learning & Image Processing Website",
         org: "Project",
         images: ["assets/img/ml-1.jpg"],
+        preview: null,
         about: "A dedicated web application supporting Machine Learning and Picture Processing coursework, showcasing complex web application requirements and client-side processing.",
         use: "An interactive web application supporting Machine Learning and Image Processing coursework with client-side demonstrations and visualizations.",
         impact: "Provided a practical platform for students to visualize and understand complex ML and image processing concepts. Simplified learning through interactive demonstrations rather than static textbook explanations.",
@@ -1020,6 +1024,7 @@
         title: "Sumobot",
         org: "Embedded Systems & Robotics Project",
         images: ["assets/img/sumobot-1.jpg", "assets/img/sumobot-2.jpg", "assets/img/sumobot-3.jpg"],
+        preview: null,
         about: "A competitive Sumobot utilizing ESP8266 microcontroller for both manual and autonomous control, with wireless communication via a dedicated mobile application.",
         use: "A competitive sumo robot capable of both manual remote control via mobile app and autonomous opponent detection and pushing.",
         impact: "Demonstrated integration of wireless communication, sensor fusion, and autonomous decision-making in robotics. Provided hands-on experience in embedded systems programming and competitive robotics strategy.",
@@ -1036,6 +1041,7 @@
         title: "Numerical Methods Project (Quadratic Equation Solver)",
         org: "Project",
         images: ["assets/img/numerical-1.jpg"],
+        preview: null,
         about: "A Java application that calculates and displays roots from user-provided quadratic equations, with graphing functionality to visually plot the quadratic curve.",
         use: "A Java application that solves quadratic equations and plots the resulting curves graphically with root markers.",
         impact: "Made abstract mathematical concepts tangible by visualizing quadratic curves and their roots. Helped students verify manual calculations and understand the relationship between equations and their graphical representations.",
@@ -1076,21 +1082,25 @@
       // Same project - use the stored preview image (reload or back navigation)
       previewImg.src = previewImageFromStorage;
       previewImg.style.display = 'block';
+      previewCard.style.display = '';
       previewCard.classList.add('same-fit');
     } else if (previewImageFromStorage) {
       // Different project - new click from index, use stored preview
       previewImg.src = previewImageFromStorage;
       previewImg.style.display = 'block';
+      previewCard.style.display = '';
       previewCard.classList.add('same-fit');
       sessionStorage.setItem('lastProjectId', currentProjectId);
     } else if (project.images && project.images.length > 0) {
       // No stored preview - fallback to first project image
       previewImg.src = project.images[0];
       previewImg.style.display = 'block';
+      previewCard.style.display = '';
       previewCard.classList.remove('same-fit');
       sessionStorage.setItem('lastProjectId', currentProjectId);
     } else {
-      previewImg.style.display = 'none';
+      // No image available at all - remove the featured preview card entirely
+      previewCard.style.display = 'none';
     }
 
     // Achievements
@@ -1111,14 +1121,19 @@
     // More projects (exclude current)
     const moreGrid = document.getElementById('more-grid');
     const otherProjects = projects.filter((p, i) => i !== projectIndex);
-    moreGrid.innerHTML = otherProjects.map(p => `
+    moreGrid.innerHTML = otherProjects.map(p => {
+      // Prefer the project's dedicated preview image; fall back to its first gallery image
+      const previewSrc = p.preview || (p.images && p.images.length > 0 ? p.images[0] : null);
+      const thumbSrc = p.images && p.images.length > 0 ? p.images[0] : '';
+      return `
       <div class="more-card" data-project="${p.id}" onclick="window.location.href='project-detail.html?project=${p.id}'">
+        ${previewSrc ? `
         <div class="more-card-preview">
-          <img src="${p.images[0]}" alt="${p.title}" onerror="this.style.display='none'">
-          <div class="preview-expand-icon" onclick="event.stopPropagation(); openLightbox('${p.images[0]}')"><i class="bi bi-arrows-fullscreen"></i></div>
-        </div>
+          <img src="${previewSrc}" alt="${p.title}" onerror="this.closest('.more-card-preview').style.display='none'">
+          <div class="preview-expand-icon" onclick="event.stopPropagation(); openLightbox('${previewSrc}')"><i class="bi bi-arrows-fullscreen"></i></div>
+        </div>` : ''}
         <div class="more-card-thumb">
-          <img src="${p.images[0]}" alt="${p.title}" onerror="this.parentElement.style.display='none'">
+          <img src="${thumbSrc}" alt="${p.title}" onerror="this.parentElement.style.display='none'">
         </div>
         <div class="more-card-body">
           <div class="more-card-period">${p.period}</div>
@@ -1126,7 +1141,8 @@
           <div class="more-card-org">${p.org}</div>
         </div>
       </div>
-    `).join('');
+    `;
+    }).join('');
 
     // Back button with highlight and scroll to project
     document.getElementById('back-btn').addEventListener('click', function (e) {
@@ -1178,10 +1194,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeLightbox();
     });
-
-    // Update the more-grid template to make the preview image clickable for lightbox
-    // and the card itself navigates to the project
-    // We need to modify the template generation to wrap the preview in a separate click handler
 
     // Store project ID for highlight when leaving this page (for browser back button)
     window.addEventListener('beforeunload', function () {
