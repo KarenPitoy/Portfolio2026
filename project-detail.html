@@ -1115,23 +1115,21 @@
       previewImg.style.display = 'block';
       previewCard.style.display = '';
       previewCard.classList.add('same-fit');
-    } else if (previewImageFromStorage) {
-      // Different project - new click from index, use stored preview
-      previewImg.src = previewImageFromStorage;
-      previewImg.style.display = 'block';
-      previewCard.style.display = '';
-      previewCard.classList.add('same-fit');
-      sessionStorage.setItem('lastProjectId', currentProjectId);
     } else if (project.images && project.images.length > 0) {
-      // No stored preview - fallback to first project image
+      // Different project (or no stored preview) - always fall back to this
+      // project's own first image so a stale preview from another project
+      // can never be shown.
       previewImg.src = project.images[0];
       previewImg.style.display = 'block';
       previewCard.style.display = '';
       previewCard.classList.remove('same-fit');
+      sessionStorage.setItem('previewImage', project.images[0]);
       sessionStorage.setItem('lastProjectId', currentProjectId);
     } else {
       // No image available at all - remove the featured preview card entirely
       previewCard.style.display = 'none';
+      sessionStorage.removeItem('previewImage');
+      sessionStorage.setItem('lastProjectId', currentProjectId);
     }
 
     // Achievements
@@ -1169,6 +1167,19 @@
       liveWrap.innerHTML = '';
     }
 
+    // Navigate to another project's detail page, making sure the correct
+    // preview image is stored BEFORE navigating so the next page load can
+    // never fall back to a stale image left behind by a different project.
+    function goToProject(id, previewSrc) {
+      if (previewSrc) {
+        sessionStorage.setItem('previewImage', previewSrc);
+      } else {
+        sessionStorage.removeItem('previewImage');
+      }
+      sessionStorage.setItem('lastProjectId', id);
+      window.location.href = 'project-detail.html?project=' + id;
+    }
+
     // More projects (exclude current)
     const moreGrid = document.getElementById('more-grid');
     const otherProjects = projects.filter((p, i) => i !== projectIndex);
@@ -1176,8 +1187,9 @@
       // Prefer the project's dedicated preview image; fall back to its first gallery image
       const previewSrc = p.preview || (p.images && p.images.length > 0 ? p.images[0] : null);
       const thumbSrc = p.images && p.images.length > 0 ? p.images[0] : '';
+      const previewArg = previewSrc ? `'${previewSrc}'` : 'null';
       return `
-      <div class="more-card" data-project="${p.id}" onclick="window.location.href='project-detail.html?project=${p.id}'">
+      <div class="more-card" data-project="${p.id}" onclick="goToProject('${p.id}', ${previewArg})">
         ${previewSrc ? `
         <div class="more-card-preview">
           <img src="${previewSrc}" alt="${p.title}" onerror="this.closest('.more-card-preview').style.display='none'">
